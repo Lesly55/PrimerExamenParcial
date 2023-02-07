@@ -1,0 +1,126 @@
+public class Examen {
+	String palabra, palabraOg, primeraLetra, sobrante, resultado;
+	int ultimo;
+	char ultimoChar,primerChar;
+	char[] palabraVocal;
+	
+	public Examen() {
+		
+	}
+	
+	public Examen (String palabraOg) {
+		this.palabraOg = palabraOg;
+	}
+		
+	public String primeraMayuscula() {
+		
+		palabra = "";
+		String[] palabras = palabraOg.split(" ");
+		
+		for (int i = 0; i < palabras.length; i++) {
+			primeraLetra =(palabras[i].substring(0, 1)).toUpperCase();
+			sobrante = palabras[i].substring(1);
+			palabras[i] = primeraLetra + sobrante;	
+			
+			palabra = palabra + palabras[i] + " ";
+		}
+		
+		return palabra;		
+		
+	}
+	
+	public String invertirCadena() {
+		int i = 0;
+		int k = palabraOg.length()-1;
+		char[] palabra = palabraOg.toCharArray();
+		
+		while(i < k) {
+			char temp = palabra[i];
+			palabra[i] = palabra[k];
+			palabra[k] = temp;
+			
+			i++;
+			k--;
+
+		}
+		
+		resultado = new String(palabra);
+		
+		return resultado;
+		
+	}
+	
+	public String vocalesMayuscula() {
+		palabraVocal = (palabraOg.toLowerCase()).toCharArray();
+		
+		for(int i = 0; i < palabraOg.length(); i++){
+			if (palabraVocal[i] == 'a' || palabraVocal[i] == 'e' || palabraVocal[i] == 'i' || palabraVocal[i] == 'o'|| palabraVocal[i] == 'u') {
+				char upper = Character.toUpperCase(palabraVocal[i]);
+				palabraVocal[i] = upper;
+			}
+		
+		}
+		resultado = new String(palabraVocal);
+		
+		return resultado;
+		
+	}
+	
+	//aqui es importante primero instancear la clase, crear un obj, luego poner el metodo de fizz buzz
+	//y por separado imprimir solamente el nombre del objeto creado
+	
+	public void fizzBuzz() {
+		
+		for(int i = 1; i < 100; i++) {
+			if (i % 3 == 0 && i % 5 == 0) {
+				System.out.print("FizzBuzz\n");
+				
+			}
+			else if (i % 3 ==0) {
+				System.out.print("Fizz\n");
+			}
+			else if (i % 5 == 0) {
+				System.out.print("Buzz\n");
+			}
+			else {
+				System.out.print(i + "\n");
+			}
+		}
+	
+		
+	}
+	
+	public String palindromo() {
+		
+		palabraOg = (palabraOg.replaceAll("\\s", "")).toLowerCase();
+		primerChar = palabraOg.charAt(0);
+		ultimo = (palabraOg.length()) - 1;
+		ultimoChar = palabraOg.charAt(ultimo);
+		
+		if (ultimoChar == primerChar) {
+			char[] palabra = palabraOg.toCharArray();
+			int i = 0;
+			int k = (palabraOg.length()) - 1;
+			k --;
+			i ++;
+			resultado = "No es palindromo";
+			
+			while (palabra[i] == palabra[k]) {
+				k --;
+				i ++;
+				if (i == k) {
+					resultado = "Es palindromo";
+					break;
+				}
+			}
+			
+		}
+		
+		else {
+			resultado = "No es palindromo";
+		}
+		
+		return resultado;
+	}
+
+}
